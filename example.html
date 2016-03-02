@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>jQuery-menubar Example</title>
+        <meta   charset="UTF-8" />
+        <link   href="menubar.css" type="text/css" rel="stylesheet">
+        <link   href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css" rel="stylesheet">
+        <script src="http://code.jquery.com/jquery-2.2.1.min.js"></script>        
+        <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+        <script src="jquery-menubar.js"></script>
+        <script>
+            $(document).ready(function(){
+            
+                test = {
+                    help: function(e){
+                       $('#log').prepend('<div>Show help</div>');
+                    }
+                };
+                        
+                $('#menubar').menubar({
+                    items: {
+                        mnuMain:{
+                            label   : 'Main',
+                            submenu : {
+                                mnuFileNew: {
+                                    label   : 'New',
+                                    action  : function(){
+                                        $('#log').prepend('<div>Create new file</div>');
+                                    }
+                                }
+                            }
+                        },
+                        mnuWhateverIWant: {
+                            label   : 'Any name I wish',
+                            submenu : {
+                                mnuWhateverOne: {
+                                    label   : 'This is submenu',
+                                    submenu : {
+                                        mnuWhateverOneSub: {
+                                            label   : 'Look there is something',
+                                           
+                                        },
+                                        mnuWhateverOne2: {
+                                            label   : 'Menu item'
+                                        },
+                                    }
+                                }
+                            }
+                        },
+                        mnuHelp: {
+                            label   : 'Help',
+                            action  : test.help
+                        }
+                    }
+                });
+            });
+        </script>
+        <style>
+            #log {
+                position: absolute;
+                top: 50px;
+                width: 300px;
+                height: 400px;
+                overflow: auto;
+                border: 1px solid #000;
+                padding: 10px;
+            }
+            #log div:first-child {
+                font-weight: bold;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="menubar"></div>
+        <div id="log"></div>
+    </body>
+</html>
